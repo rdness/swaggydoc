@@ -25,8 +25,8 @@ class ApiController {
 
 
     def show(String id) {
-		// Removed to prevent CORS attacks
-		//header 'Access-Control-Allow-Origin', '*'
+        // Removed to prevent CORS attacks
+        //header 'Access-Control-Allow-Origin', '*'
         log.info "Presenting definition for $id"
         ControllerDefinition controllerDefinition = swaggyDataService.apiDetails(id)
         if (!controllerDefinition) {
