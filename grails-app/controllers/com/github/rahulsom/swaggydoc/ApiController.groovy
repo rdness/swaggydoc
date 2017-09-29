@@ -25,7 +25,11 @@ class ApiController {
 
 
     def show(String id) {
-        header 'Access-Control-Allow-Origin', '*'
+        // Make Access Control header optional (Enabled by default)
+        def configs = SwaggyDataService.getConfig()
+        if( !configs.containsKey('allowAccessControl') || configs.get('allowAccessControl') ) {
+            header 'Access-Control-Allow-Origin', '*'
+        }
         log.info "Presenting definition for $id"
         ControllerDefinition controllerDefinition = swaggyDataService.apiDetails(id)
         if (!controllerDefinition) {
